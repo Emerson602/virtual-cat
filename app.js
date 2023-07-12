@@ -7,7 +7,7 @@ let imageUrl = './pics/main.gif';
 let name = '';
 let age = 0;
 let months = 0;
-const oneDay = 12 * 24 * 60 * 60 * 1000;
+const oneDay = 5000; // const oneDay = 12 * 24 * 60 * 60 * 1000 
 let health = 100; 
 let happy = 100; 
 let alimentation = 100; 
@@ -89,7 +89,7 @@ function ageUpdate() {
 
 }; 
 
-const ageUpdateInterval = setInterval(ageUpdate, oneDay); 
+ 
 
 
 function healthStatus() { 
@@ -293,7 +293,9 @@ function yourCatDied() {
     happy = 0; 
     alimentation = 0; 
     hydration = 0;
-    vitality = 0;         
+    vitality = 0;
+    cleaning = 0; 
+    bathroom = 0;        
   }
 
 }; 
@@ -303,16 +305,18 @@ function updadeImages() {
   
   imgCat.src = imageUrl;
 
-  if (health <= 70 || happy <= 70 || alimentation <= 70 || hydration <= 70 || vitality <= 70 || cleaning <= 70 || bathroom <= 70) {
-    imageUrl = './pics/bravo.gif';
-  } else if (health <= 60 || happy <= 60 || alimentation <= 60 || hydration <= 60 || vitality <= 60 || cleaning <= 60 || bathroom <= 60) {
-    imageUrl = './pics/aborrecido.gif';
-  } else if (health <= 30 || happy <= 30 || alimentation <= 30 || hydration <= 30 || vitality <= 30 || cleaning <= 30 || bathroom <= 30) {
-    imageUrl = './pics/esperneando.gif';
-  } else if (health <= 15 || happy <= 15 || alimentation <= 15 || hydration <= 15 || vitality <= 15 || cleaning <= 15 || bathroom <= 15) {
-    imageUrl = './pics/chorando.gif';
+  if (health == 0 || happy == 0 || alimentation == 0 || hydration == 0 || vitality == 0 || cleaning == 0 || bathroom == 0) {
+    imageUrl = './pics/doente.gif';
   } else if (health <= 5 || happy <= 5 || alimentation <= 5 || hydration <= 5 || vitality <= 5 || cleaning <= 5 || bathroom <= 5) {
     imageUrl = './pics/chorando.gif';
+  } else if (health <= 15 || happy <= 15 || alimentation <= 15 || hydration <= 15 || vitality <= 15 || cleaning <= 15 || bathroom <= 15) {
+    imageUrl = './pics/esperneando.gif';
+  } else if (health <= 30 || happy <= 30 || alimentation <= 30 || hydration <= 30 || vitality <= 30 || cleaning <= 30 || bathroom <= 30) {
+    imageUrl = './pics/pensativo.gif';
+  } else if (health <= 70 || happy <= 70 || alimentation <= 70 || hydration <= 70 || vitality <= 70 || cleaning <= 70 || bathroom <= 70) {
+    imageUrl = './pics/bravo.gif';
+  } else {
+    imageUrl = './pics/tranquilo-2.gif';
   }
 
 }; 
@@ -320,7 +324,7 @@ function updadeImages() {
 
 function updadeColorBars() {
 
-  if (health >= 60) {
+  if (health >= 70) {
     healthBar.style.backgroundColor = '#006400';
   } else if (health >= 30) {
     healthBar.style.backgroundColor = '#FFD700';
@@ -328,7 +332,7 @@ function updadeColorBars() {
     healthBar.style.backgroundColor = '#FF0000';
   }
 
-  if (happy >= 60) {
+  if (happy >= 70) {
     happyBar.style.backgroundColor = '#006400';
   } else if (happy >= 30) {
     happyBar.style.backgroundColor = '#FFD700';
@@ -336,9 +340,49 @@ function updadeColorBars() {
     happyBar.style.backgroundColor = '#FF0000';
   }
 
+  if (alimentation >= 70) {
+    alimentationBar.style.backgroundColor = '#006400';    
+  } else if (alimentation >= 30) {
+    alimentationBar.style.backgroundColor = '#FFD700';    
+  } else if (alimentation >= 0) {
+    alimentationBar.style.backgroundColor = '#FF0000';
+  }
+
+  if (hydration >= 70) {
+    hydrationBar.style.backgroundColor = '#006400';
+  } else if (hydration >= 30) {
+    hydrationBar.style.backgroundColor = '#FFD700';
+  } else if (hydration >= 0) {
+    hydrationBar.style.backgroundColor = '#FF0000';
+  }
+
+  if (vitality >= 70) {
+    vitalityBar.style.backgroundColor = '#006400';
+  } else if (vitality >= 30) {
+    vitalityBar.style.backgroundColor = '#FFD700';
+  } else if (vitality >= 0) {
+    vitalityBar.style.backgroundColor = '#FF0000';
+  }
+
+  if (cleaning >= 70) {
+    cleaningBar.style.backgroundColor = '#006400';
+  } else if (cleaning >= 30) {
+    cleaningBar.style.backgroundColor = '#FFD700';
+  } else if (cleaning >= 0) {
+    cleaningBar.style.backgroundColor = '#FF0000';
+  }
+
+  if (bathroom >= 70) {
+    bathroomBar.style.backgroundColor = '#006400';
+  } else if (bathroom >= 30) {
+    bathroomBar.style.backgroundColor = '#FFD700';
+  } else if (bathroom >= 0) {
+    bathroomBar.style.backgroundColor = '#FF0000';
+  }
+
 }; 
 
-
+const ageUpdateInterval = setInterval(ageUpdate, oneDay);
 const indexStatusUpdateInterval = setInterval(indexStatus, 5000);
 const healthUpdateInterval = setInterval(healthStatus, 5000);
 const happyUpdateInterval = setInterval(happyStatus, 5000);
