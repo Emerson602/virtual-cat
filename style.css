@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;  
-  font-family: sans-serif;
+  font-family: sans-serif;  
 }
 
 #content{
@@ -27,7 +27,18 @@
 
 img {
   width: 563px;
-  height: auto;
+  height: auto;  
+}
+
+@media(max-width: 600px){
+
+  img{
+
+    width: 85vw;
+    height: auto;
+
+  }
+
 }
 
 .container-status-hidden{
@@ -46,7 +57,7 @@ img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); 
-  background-color: rgba(20,20,20, 1);  
+  background-color: rgba(20,20,20, 0.5);  
   padding: 60px 10px;
   border-radius: 10px; 
 }
@@ -83,10 +94,45 @@ img {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   background-color: #bbb; 
   width: 100%;
-  position: relative;
-  top: -100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+button{
+  width: 100px;
+  height: 40px;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #8B008B;
+  margin: 8px 12px;
+}
+
+button:hover{
+
+  cursor: pointer;
+  transition: 1s;
+  background-color: yellow;
+  color: #000;
+}
+
+#not-clickable{
+  width: 100px;
+  height: 40px;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #4F4F4F;
+  margin: 8px 12px;
+}
+
+#not-clickable:hover{
+
+  cursor: none;
+  color: #fff;
+  background-color: #4F4F4F;
 }
 
 .container-actions-hidden{
@@ -95,18 +141,26 @@ img {
 
 .container-actions{ 
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: auto auto auto;
   justify-content: center;
-  align-items: flex-start;
-  height: 600px;
+  align-items: center;
+  height: auto;
   width: 500px;
   position: absolute; 
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); 
-  background-color: rgba(20,20,20, 1);  
+  background-color: rgba(20,20,20, 0.5);  
   padding: 60px 10px;
-  border-radius: 10px; 
+  border-radius: 10px;   
+}
+
+@media(max-width: 540px){
+
+  .container-actions{
+    width: 90vw;
+  }
+
 }
     
