@@ -309,17 +309,17 @@ function updadeImages() {
   imgCat.src = imageUrl;
 
   if (health == 0 || happy == 0 || alimentation == 0 || hydration == 0 || vitality == 0 || cleaning == 0 || bathroom == 0) {
-    imageUrl = './pics/doente.gif';
+    imageUrl = './pics/sick.gif';
   } else if (health <= 5 || happy <= 5 || alimentation <= 5 || hydration <= 5 || vitality <= 5 || cleaning <= 5 || bathroom <= 5) {
-    imageUrl = './pics/chorando.gif';
+    imageUrl = './pics/crying.gif';
   } else if (health <= 15 || happy <= 15 || alimentation <= 15 || hydration <= 15 || vitality <= 15 || cleaning <= 15 || bathroom <= 15) {
-    imageUrl = './pics/esperneando.gif';
+    imageUrl = './pics/kicking.gif';
   } else if (health <= 30 || happy <= 30 || alimentation <= 30 || hydration <= 30 || vitality <= 30 || cleaning <= 30 || bathroom <= 30) {
-    imageUrl = './pics/pensativo.gif';
+    imageUrl = './pics/thoughtful.gif';
   } else if (health <= 70 || happy <= 70 || alimentation <= 70 || hydration <= 70 || vitality <= 70 || cleaning <= 70 || bathroom <= 70) {
-    imageUrl = './pics/bravo.gif';
+    imageUrl = './pics/angry.gif';
   } else {
-    imageUrl = './pics/tranquilo-2.gif';
+    imageUrl = './pics/quiet.gif';
   }
 
 }; 
@@ -446,11 +446,11 @@ const btnKindness = document.querySelector('#btn-kindness');
 const btnLittleSnack = document.querySelector('#btn-little-snack');
 const btnEat = document.querySelector('#btn-eat');
 const btnDrink = document.querySelector('#btn-drink');
-const btnRelax = document.querySelector('#btn-relax'); 
+const btnRelax = document.querySelector('#btn-relax');
 
-let randomNumberActions = Math.floor(Math.random() * (10 - 5 + 1)) + 5;
+let randomNumberActions = Math.floor(Math.random() * (10 - 5 + 1)) + 5; 
 
-function limiteActions() {
+function disableActionButtons() {
 
   if (health <= 0 || health > 100) {
 
@@ -468,43 +468,103 @@ function limiteActions() {
 
   } else if (vitality <= 30 || alimentation <= 30 || bathroom <= 30|| hydration <= 30) {
 
-    run.setAttribute('id', 'not-clickable');    
+    run.setAttribute('id', 'not-clickable');
+    run.disabled = true;    
 
   } else if (vitality <= 30 || alimentation <= 30 || bathroom <= 30|| hydration <= 30) {
 
-    play.setAttribute('id', 'not-clickable');     
+    play.setAttribute('id', 'not-clickable'); 
+    play.disabled = true;    
     
   } else if (vitality >= 70 || alimentation <= 30 || bathroom <= 30 || hydration <= 30) {
 
-    sleep.setAttribute('id', 'not-clickable');     
+    sleep.setAttribute('id', 'not-clickable');  
+    sleep.disabled = true;   
     
   } else if (bathroom >= 90) {
 
-    toilet.setAttribute('id', 'not-clickable');     
+    toilet.setAttribute('id', 'not-clickable');
+    toilet.disabled = true;       
     
   } else if (happy >= 100 || vitality <= 30 || alimentation <= 30 || bathroom <= 30 || hydration <= 30) {
 
     kindness.setAttribute('id', 'not-clickable');     
+    kindness.disabled = true;
     
   } else if (alimentation >= 100 || bathroom <= 30) {
 
-    littleSnack.setAttribute('id', 'not-clickable');     
+    littleSnack.setAttribute('id', 'not-clickable');
+    littleSnack.disabled = true;     
     
   } else if (alimentation >= 100 || bathroom <= 30) {
 
-    eat.setAttribute('id', 'not-clickable');     
+    eat.setAttribute('id', 'not-clickable'); 
+    eat.disabled = true;     
     
   } else if (hydration >= 100 || bathroom <= 30) {
 
-    drink.setAttribute('id', 'not-clickable');     
+    drink.setAttribute('id', 'not-clickable'); 
+    drink.disabled = true;    
     
   } else if (vitality >= 90 || alimentation <= 30 || bathroom <= 30 || hydration <= 30) {
 
-    relax.setAttribute('id', 'not-clickable');     
+    relax.setAttribute('id', 'not-clickable');  
+    relax.disabled = true;   
+    
+  }; 
+
+};
+
+function enableActionButtons() {
+
+  if (vitality > 30 && alimentation > 30 && bathroom > 30 && hydration > 30) {
+
+    run.setAttribute('id', 'btn-run');
+    run.disabled = false;    
+
+  } else if (vitality > 30 && alimentation > 30 && bathroom > 30 && hydration > 30) {
+
+    play.setAttribute('id', 'btn-play'); 
+    play.disabled = false;    
+    
+  } else if (vitality < 70 && alimentation > 30 && bathroom > 30 && hydration > 30) {
+
+    sleep.setAttribute('btn-sleep');  
+    sleep.disabled = false;   
+    
+  } else if (bathroom < 90) {
+
+    toilet.setAttribute('id', 'btn-toilet');
+    toilet.disabled = false;       
+    
+  } else if (happy < 100 && vitality > 30 && alimentation > 30 && bathroom > 30 && hydration >= 30) {
+
+    kindness.setAttribute('id', 'btn-kindness');     
+    kindness.disabled = false;
+    
+  } else if (alimentation < 100 && bathroom > 30) {
+
+    littleSnack.setAttribute('id', 'btn-little-snack');
+    littleSnack.disabled = false;     
+    
+  } else if (alimentation < 100 && bathroom > 30) {
+
+    eat.setAttribute('id', 'btn-eat'); 
+    eat.disabled = false;     
+    
+  } else if (hydration < 100 && bathroom > 30) {
+
+    drink.setAttribute('id', 'btn-drink'); 
+    drink.disabled = false;    
+    
+  } else if (vitality < 90 && alimentation > 30 && bathroom > 30 && hydration > 30) {
+
+    relax.setAttribute('id', 'btn-relax');  
+    relax.disabled = false;   
     
   };
 
-}; 
+};  
 
 
 function toRun() { 
@@ -518,40 +578,30 @@ function toRun() {
     vitality -= randomNumberActions;
     cleaning -= randomNumberActions;
     hydration -= randomNumberActions;
-    alimentation -= randomNumberActions;
+    alimentation -= randomNumberActions;    
 
-    const incrementHappy = () => {
+    const stopIncrementHappy = () => {
 
-      if (happy >= 100) {
-      happy += 0;
-      happy = 100;
+      if (happy >= 90) {
+      
+      happy = 100;  
+      happy += 0;       
 
-    } else if (happy >= 90 && happy < 100){ 
+    } else {       
 
-      happy += 0;
-      happy = 100;
+      happy += randomNumberActions;  
 
-    } else {
+    };
 
-      happy += randomNumberActions;
-    } 
-
-    };   
-
+    };  
     
-    imageUrl = './pics/correndo.gif';
-       
+    imageUrl = './pics/running.gif';  
 
-
-    btnActions.setAttribute('id', 'not-clickable'); 
-    btnActions.disabled = true;        
-
-    const delayButton = setTimeout(() => {
-
-    btnActions.setAttribute('id', 'btn-run');
-    btnActions.disabled = false;     
-
-    }, 5000);           
+    btnActions.setAttribute('id', 'not-clickable');     
+    btnActions.disabled = true; 
+     
+    pauseUpdateImages;
+    delayButton;           
 
   } else {
 
@@ -561,32 +611,190 @@ function toRun() {
     alimentation -= 0;
     happy += 0;
 
-  }  
+  };  
    
 }; 
 
-
 function toPlay() { 
 
-  // reduz cleaning
-  // aumenta happy 
-}
+  if(alimentation > 30 || hydration > 30 || vitality > 30 || bathroom > 30) { 
 
-function toSleep() { 
 
-  // aumenta vitality
-  // aumenta health
-}
+    containerStatus.setAttribute('class', 'container-status-hidden');
+    containerActions.setAttribute('class', 'container-actions-hidden');
+
+    vitality -= randomNumberActions;
+    cleaning -= randomNumberActions;
+    hydration -= randomNumberActions;
+    alimentation -= randomNumberActions;    
+
+    const stopIncrementHappy = () => {
+
+      if (happy >= 90) {
+      
+      happy = 100;  
+      happy += 0;       
+
+    } else {       
+
+      happy += randomNumberActions;  
+
+    };
+
+    };  
+    
+    imageUrl = './pics/joking.gif';  
+
+    btnActions.setAttribute('id', 'not-clickable');     
+    btnActions.disabled = true;
+
+    pauseUpdateImages;
+    delayButton;          
+
+  } else {
+
+    vitality -= 0;
+    cleaning -= 0;
+    hydration -= 0;
+    alimentation -= 0;
+    happy += 0;
+
+  };  
+   
+};  
+
+function toSleep() {   
+
+  if(alimentation > 30 || hydration > 30 || vitality > 30 || bathroom > 30) { 
+
+
+  containerStatus.setAttribute('class', 'container-status-hidden');
+  containerActions.setAttribute('class', 'container-actions-hidden');
+
+  const stopIncrementVitality = () => {
+
+    if (vitality >= 90) {
+    
+    vitality = 100;  
+    vitality += 0;       
+
+  } else {    
+
+     vitality += randomNumberActions;
+       
+  };
+
+};
+
+  const stopIncrementHealth = () => {
+
+  if (health >= 95) {
+    
+    health = 100;  
+    health += 0;       
+
+  } else {    
+
+    health += (randomNumberActions - 5);
+       
+  };
+
+  };  
+  
+  imageUrl = './pics/sleeping.gif';  
+
+  btnActions.setAttribute('id', 'not-clickable');     
+  btnActions.disabled = true; 
+
+  pauseUpdateImages;
+  delayButton;  
+
+} else {
+
+  vitality -= 0;
+  health -= 0;  
+
+  }; 
+
+}; 
 
 function toToilet() { 
 
-  // aumenta bathroom
-}
+  if(bathroom > 30) { 
+
+
+  containerStatus.setAttribute('class', 'container-status-hidden');
+  containerActions.setAttribute('class', 'container-actions-hidden');
+
+  const stopIncrementBathroom = () => {
+
+    if (bathroom >= 90) {
+    
+    bathroom = 100;  
+    bathroom += 0;       
+
+  } else {    
+
+     bathroom += randomNumberActions;
+       
+  };
+
+};   
+  
+  imageUrl = './pics/bathroom.gif';  
+
+  btnActions.setAttribute('id', 'not-clickable');     
+  btnActions.disabled = true; 
+
+  pauseUpdateImages;
+  delayButton;            
+
+} else { 
+
+  bathroom -= 0; 
+
+};
+
+};
 
 function toKindness() { 
 
-  // aumenta happy 
-}
+  if(happy < 100) { 
+
+
+  containerStatus.setAttribute('class', 'container-status-hidden');
+  containerActions.setAttribute('class', 'container-actions-hidden');
+
+  const stopIncrementHappy = () => {
+
+    if (happy >= 90) {
+    
+    happy = 100;  
+    happy += 0;       
+
+  } else {    
+
+     happy += randomNumberActions;
+       
+  }; 
+
+};   
+  
+  imageUrl = './pics/kindness.gif';  
+
+  btnActions.setAttribute('id', 'not-clickable');     
+  btnActions.disabled = true; 
+
+  pauseUpdateImages;
+  delayButton;            
+
+} else { 
+
+  happy -= 0; 
+
+}; 
+
+};
 
 function toLittleSnack() { 
 
@@ -616,6 +824,21 @@ function toRelax() {
   // aumenta health
 }
 
+const pauseUpdateImages = setTimeout(() => {
+
+  clearInterval(updadeImagesInterval);  
+
+}, 5000); 
+
+
+const delayButton = setTimeout(() => {
+
+btnActions.setAttribute('id', 'btn-actions');
+btnActions.disabled = false;    
+const updadeImagesInterval = setInterval(updadeImages, 5000);    
+
+}, 15000);
+
 btnRun.addEventListener('click', toRun);
 btnPlay.addEventListener('click', toPlay);
 btnSleep.addEventListener('click', toSleep);
@@ -629,17 +852,18 @@ btnRelax.addEventListener('click', toRelax);
 
 const ageUpdateInterval = setInterval(ageUpdate, oneDay);
 const indexStatusUpdateInterval = setInterval(indexStatus, 5000);
-const healthUpdateInterval = setInterval(healthStatus, 15000);
-const happyUpdateInterval = setInterval(happyStatus, 15000);
-const alimentationUpdateInterval = setInterval(alimentationStatus, 15000);
-const hydrationUpdateInterval = setInterval(hydrationStatus, 15000);
-const vitalityUpdateInterval = setInterval(vitalityStatus, 15000);
-const cleaningUpdateInterval = setInterval(cleaningStatus, 15000);
-const bathroomUpdateInterval = setInterval(bathroomStatus, 15000);
-const yourCatDiedUpdateInterval = setInterval(yourCatDied, 15000); 
-const updadeImagesInterval = setInterval(updadeImages, 5000);
+const healthUpdateInterval = setInterval(healthStatus, 60000);
+const happyUpdateInterval = setInterval(happyStatus, 60000);
+const alimentationUpdateInterval = setInterval(alimentationStatus, 60000);
+const hydrationUpdateInterval = setInterval(hydrationStatus, 60000);
+const vitalityUpdateInterval = setInterval(vitalityStatus, 60000);
+const cleaningUpdateInterval = setInterval(cleaningStatus, 60000);
+const bathroomUpdateInterval = setInterval(bathroomStatus, 60000);
+const yourCatDiedUpdateInterval = setInterval(yourCatDied, 60000); 
+const updadeImagesInterval = setInterval(updadeImages, 60000);
 const updadeColorBarsInterval = setInterval(updadeColorBars, 5000);
-const limiteUpdateActionsInterval = setInterval(limiteActions, 5000);
+const disableActionButtonsInterval = setInterval(disableActionButtons, 5000);
+const enableActionButtonsInterval = setInterval(disableActionButtons, 5000);
 const limiteUpdateStatusInterval = setInterval(limiteStatus, 5000);
 
 
