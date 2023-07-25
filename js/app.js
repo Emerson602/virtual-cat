@@ -1,10 +1,11 @@
 const content = document.querySelector('#content');
 const containerStatus = document.querySelector('#container-status');
 const containerActions = document.querySelector('#container-actions');
+const notificationDiv = document.createElement("div");
 const imgCat = document.getElementById('img-cat'); 
 let imageUrl = './pics/main.gif'; 
 
-let name = '';
+let name = 'Coquinho';
 let age = 0;
 let months = 0;
 const oneDay = 12 * 24 * 60 * 60 * 1000;
@@ -308,63 +309,43 @@ function updadeImages() {
 
 }; 
 
-function updadeColorBars() {
+function updateBar(barElement, value) {
 
-  if (health >= 70) {
-    healthBar.style.backgroundColor = '#006400';
-  } else if (health >= 30) {
-    healthBar.style.backgroundColor = '#FFD700';
-  } else if (health >= 0) {
-    healthBar.style.backgroundColor = '#FF0000';
-  }
+  if (value >= 90) {
+    barElement.style.backgroundColor = '#006400';
+  } else if (value >= 80) {
+    barElement.style.backgroundColor = '#008000';
+  } else if (value >= 70) {
+    barElement.style.backgroundColor = '#228B22';
+  } else if (value >= 60) {
+    barElement.style.backgroundColor = '#FFD700';
+  } else if (value >= 50) {
+    barElement.style.backgroundColor = '#FFA500';
+  } else if (value >= 40) {
+    barElement.style.backgroundColor = '#FF8C00';
+  } else if (value >= 30) {
+    barElement.style.backgroundColor = '#FF4500';
+  } else if (value >= 20) {
+    barElement.style.backgroundColor = '#FF0000';
+  } else if (value >= 10) {
+    barElement.style.backgroundColor = '#8B0000';
+  } else if (value >= 5) {
+    barElement.style.backgroundColor = '#141414';
+  } else if (value >= 0) {
+    barElement.style.backgroundColor = '#000000';
+  };
 
-  if (happy >= 70) {
-    happyBar.style.backgroundColor = '#006400';
-  } else if (happy >= 30) {
-    happyBar.style.backgroundColor = '#FFD700';
-  } else if (happy >= 0) {
-    happyBar.style.backgroundColor = '#FF0000';
-  }
+};
 
-  if (alimentation >= 70) {
-    alimentationBar.style.backgroundColor = '#006400';    
-  } else if (alimentation >= 30) {
-    alimentationBar.style.backgroundColor = '#FFD700';    
-  } else if (alimentation >= 0) {
-    alimentationBar.style.backgroundColor = '#FF0000';
-  }
+function updateAllBars() {
 
-  if (hydration >= 70) {
-    hydrationBar.style.backgroundColor = '#006400';
-  } else if (hydration >= 30) {
-    hydrationBar.style.backgroundColor = '#FFD700';
-  } else if (hydration >= 0) {
-    hydrationBar.style.backgroundColor = '#FF0000';
-  }
-
-  if (vitality >= 70) {
-    vitalityBar.style.backgroundColor = '#006400';
-  } else if (vitality >= 30) {
-    vitalityBar.style.backgroundColor = '#FFD700';
-  } else if (vitality >= 0) {
-    vitalityBar.style.backgroundColor = '#FF0000';
-  }
-
-  if (cleaning >= 70) {
-    cleaningBar.style.backgroundColor = '#006400';
-  } else if (cleaning >= 30) {
-    cleaningBar.style.backgroundColor = '#FFD700';
-  } else if (cleaning >= 0) {
-    cleaningBar.style.backgroundColor = '#FF0000';
-  }
-
-  if (bathroom >= 70) {
-    bathroomBar.style.backgroundColor = '#006400';
-  } else if (bathroom >= 30) {
-    bathroomBar.style.backgroundColor = '#FFD700';
-  } else if (bathroom >= 0) {
-    bathroomBar.style.backgroundColor = '#FF0000';
-  }
+  updateBar(healthBar, health);
+  updateBar(happyBar, happy);
+  updateBar(alimentationBar, alimentation);
+  updateBar(hydrationBar, hydration);
+  updateBar(vitalityBar, vitality);
+  updateBar(cleaningBar, cleaning);
+  updateBar(bathroomBar, bathroom);
 
 };
 
@@ -382,7 +363,7 @@ const brushTeeth = document.createElement("button");
 const futebol = document.createElement("button");
 
 function createActionsButtons() {
-
+   
    run.innerText = "Correr";  
    run.setAttribute("id", "btn-run");
   
@@ -453,7 +434,7 @@ let randomNumberActions = Math.floor(Math.random() * (10 - 5 + 1)) + 5;
 
 function disableAndEnabledActionButtons() {
 
-      if (health <= 0 || health > 100) {
+      if (health <= 0) {
 
       run.setAttribute('id', 'not-clickable');
       play.setAttribute('id', 'not-clickable');
@@ -1141,7 +1122,58 @@ const delayUpdateImages = setTimeout(() => {
     }, 15000);     
 
 }, 3000);  
+ 
+function notifications() {
 
+  let message = 'null';
+    
+  const deleteMessage = setTimeout(() => {let message = null;}, 20000);
+  notificationDiv.setAttribute("id", "notification");
+  const receiveMessage = document.createElement("span");
+  notificationDiv.appendChild(receiveMessage);
+  console.log(message)
+  const showMessage = () => {
+    document.body.appendChild(notificationDiv);
+    notificationDiv.classList.add("notification");
+    receiveMessage.innerText = message;
+  }; 
+
+  if (health < 90) {
+    message = `O ${name} não está se sentindo bem!`;
+    showMessage(); 
+  }; 
+
+  if (happy < 90) {
+    message = `O ${name} está triste!`;
+    showMessage();
+  };
+
+  if (alimentation < 90) {
+    message = `O ${name} está com fome!`;
+    showMessage();
+  };
+
+  if (hydration < 90) {
+    message = `O ${name} está com sede!`;
+    showMessage();
+  };
+
+  if (vitality < 90) {
+    message = `O ${name} está cansado!`;
+    showMessage();
+  };
+
+  if (cleaning < 90) {
+    message = `O ${name} está sujo!`;
+    showMessage();
+  }; 
+
+  if (bathroom < 90) {
+    message = `O ${name} está apertado!`;
+    showMessage();
+  }; 
+  console.log(message)
+}; 
 
 btnRun.addEventListener('click', toRun);
 btnPlay.addEventListener('click', toPlay);
@@ -1157,20 +1189,21 @@ btnBrushTeeth.addEventListener('click', toBrushTeeth);
 btnFutebol.addEventListener('click', toFutebol);
 
 const ageUpdateInterval = setInterval(ageUpdate, oneDay);
-const indexStatusUpdateInterval = setInterval(indexStatus, 30000);
+const indexStatusUpdateInterval = setInterval(indexStatus, 3000);
+const notificationsInterval = setInterval(notifications, 30000); 
 
-const healthUpdateInterval = setInterval(healthStatus, 120000);
-const happyUpdateInterval = setInterval(happyStatus, 110000);
-const alimentationUpdateInterval = setInterval(alimentationStatus, 100000);
-const hydrationUpdateInterval = setInterval(hydrationStatus, 90000);
-const vitalityUpdateInterval = setInterval(vitalityStatus, 80000);
-const cleaningUpdateInterval = setInterval(cleaningStatus, 70000);
-const bathroomUpdateInterval = setInterval(bathroomStatus, 60000); 
+const healthUpdateInterval = setInterval(healthStatus, 12000);
+const happyUpdateInterval = setInterval(happyStatus, 11000);
+const alimentationUpdateInterval = setInterval(alimentationStatus, 10000);
+const hydrationUpdateInterval = setInterval(hydrationStatus, 9000);
+const vitalityUpdateInterval = setInterval(vitalityStatus, 8000);
+const cleaningUpdateInterval = setInterval(cleaningStatus, 7000);
+const bathroomUpdateInterval = setInterval(bathroomStatus, 6000); 
 
 const updadeImagesInterval = setInterval(updadeImages, imageInterval);
-const updadeColorBarsInterval = setInterval(updadeColorBars, 30000);
+const updadeColorBarsInterval = setInterval(updateAllBars, 3000);
 
-const disableAndEnabledActionButtonsInterval = setInterval(disableAndEnabledActionButtons, 30000);
-const limiteUpdateStatusInterval = setInterval(limiteStatus, 30000);
-const yourCatDiedUpdateInterval = setInterval(yourCatDied, 30000); 
+const disableAndEnabledActionButtonsInterval = setInterval(disableAndEnabledActionButtons, 3000);
+const limiteUpdateStatusInterval = setInterval(limiteStatus, 3000);
+const yourCatDiedUpdateInterval = setInterval(yourCatDied, 3000); 
 
