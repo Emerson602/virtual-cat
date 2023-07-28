@@ -119,7 +119,7 @@ function happyStatus() {
   } else if (age <= 10) {
     happy -= randomNumber * 2;
   } else {
-    happy -= randomNumber;  	
+    happy -= randomNumber;    
   }
 
   happyBar.style.width = happy + '%';
@@ -135,7 +135,7 @@ function alimentationStatus() {
   } else if (age <= 10) {
     alimentation -= randomNumber * 2;
   } else {
-    alimentation -= randomNumber;  	
+    alimentation -= randomNumber;   
   }
 
   alimentationBar.style.width = alimentation + '%';
@@ -151,7 +151,7 @@ function hydrationStatus() {
   } else if (age <= 10) {
     hydration -= randomNumber * 2;
   } else {
-    hydration -= randomNumber;  	
+    hydration -= randomNumber;    
   }
 
   hydrationBar.style.width = hydration + '%';
@@ -167,7 +167,7 @@ function vitalityStatus() {
   } else if (age <= 10) {
     vitality -= randomNumber * 2;
   } else {
-    vitality -= randomNumber * 3;  	
+    vitality -= randomNumber * 3;   
   }
 
   vitalityBar.style.width = vitality + '%';
@@ -618,11 +618,11 @@ const delayBathButton = setTimeout(() => {bath.setAttribute('id', 'btn-bath'); b
 const delayBrushTeethButton = setTimeout(() => {brushTeeth.setAttribute('id', 'btn-brush-teeth'); brushTeeth.disabled = false;}, 30000);
 const delayFutebolButton = setTimeout(() => {futebol.setAttribute('id', 'btn-relax'); futebol.disabled = false;}, 30000);
 
-const callFunctions = (indexStatus, updadeImages, updadeColorBars) => {
+const callFunctions = (indexStatus, updadeImages, updateAllBars) => {
  
   indexStatus(); 
   updadeImages();
-  updadeColorBars(); 
+  updateAllBars(); 
 
 };
 
@@ -662,7 +662,7 @@ function toRun() {
 
     };             
 
-    callFunctions(indexStatus, updadeImages, updadeColorBars);
+    callFunctions(indexStatus, updadeImages, updateAllBars);
 
   };  
    
@@ -703,7 +703,7 @@ function toPlay() {
 
     }; 
 
-    callFunctions(indexStatus, updadeImages, updadeColorBars);
+    callFunctions(indexStatus, updadeImages, updateAllBars);
 
   } ;
    
@@ -725,7 +725,7 @@ function toSleep() {
   vitality += randomNumberActions;
   health += randomNumberActions - 5; 
   
-  callFunctions(indexStatus, updadeImages, updadeColorBars); 
+  callFunctions(indexStatus, updadeImages, updateAllBars); 
 
   return 
 
@@ -744,7 +744,7 @@ function toSleep() {
      
 };  
   
-  callFunctions(indexStatus, updadeImages, updadeColorBars);   
+  callFunctions(indexStatus, updadeImages, updateAllBars);   
 
 }; 
 
@@ -780,7 +780,7 @@ function toToilet() {
 
   }; 
 
-  callFunctions(indexStatus, updadeImages, updadeColorBars);
+  callFunctions(indexStatus, updadeImages, updateAllBars);
 
 };  
 
@@ -809,7 +809,7 @@ function toKindness() {
       
   };  
 
-  callFunctions(indexStatus, updadeImages, updadeColorBars);
+  callFunctions(indexStatus, updadeImages, updateAllBars);
 
 };
 
@@ -848,7 +848,7 @@ function toLittleSnack() {
       
     };
 
-    callFunctions(indexStatus, updadeImages, updadeColorBars);       
+    callFunctions(indexStatus, updadeImages, updateAllBars);       
         
   };
 
@@ -897,7 +897,7 @@ function toEat() {
      
     };  
 
-    callFunctions(indexStatus, updadeImages, updadeColorBars); 
+    callFunctions(indexStatus, updadeImages, updateAllBars); 
 
 };
 
@@ -935,7 +935,7 @@ function toDrink() {
      
     };
 
-    callFunctions(indexStatus, updadeImages, updadeColorBars); 
+    callFunctions(indexStatus, updadeImages, updateAllBars); 
 
 };
 
@@ -975,7 +975,7 @@ function toRelax() {
      
     };
 
-    callFunctions(indexStatus, updadeImages, updadeColorBars);
+    callFunctions(indexStatus, updadeImages, updateAllBars);
 
 };
 
@@ -1018,7 +1018,7 @@ function toBath() {
 
     };
 
-    callFunctions(indexStatus, updadeImages, updadeColorBars);
+    callFunctions(indexStatus, updadeImages, updateAllBars);
 
   } ;
    
@@ -1064,7 +1064,7 @@ function toBrushTeeth() {
 
     };
 
-    callFunctions(indexStatus, updadeImages, updadeColorBars);
+    callFunctions(indexStatus, updadeImages, updateAllBars);
 
   } ;
    
@@ -1105,7 +1105,7 @@ function toFutebol() {
 
     };  
 
-    callFunctions(indexStatus, updadeImages, updadeColorBars);
+    callFunctions(indexStatus, updadeImages, updateAllBars);
 
   } ;
    
@@ -1121,59 +1121,124 @@ const delayUpdateImages = setTimeout(() => {
 
     }, 15000);     
 
-}, 3000);  
+}, 3000);    
  
 function notifications() {
 
-  let message = 'null';
-    
-  const deleteMessage = setTimeout(() => {let message = null;}, 20000);
+  let messageHealth = null; 
+  let messageHappy = null;
+  let messageAlimenation = null;
+  let messageHydration = null;
+  let messageVitality = null;
+  let messageCleaning = null;
+  let messageBathroom = null;   
+ 
   notificationDiv.setAttribute("id", "notification");
-  const receiveMessage = document.createElement("span");
-  notificationDiv.appendChild(receiveMessage);
-  console.log(message)
+
+  const receiveMessageHealth = document.createElement("span");
+  const receiveMessageHappy = document.createElement("span");
+  const receiveMessageAlimenation = document.createElement("span");
+  const receiveMessageHydration = document.createElement("span");
+  const receiveMessageVitality = document.createElement("span");
+  const receiveMessageCleaning = document.createElement("span");
+  const receiveMessageBathroom = document.createElement("span");
+
+  notificationDiv.appendChild(receiveMessageHealth);
+  notificationDiv.appendChild(receiveMessageHappy);
+  notificationDiv.appendChild(receiveMessageAlimenation);
+  notificationDiv.appendChild(receiveMessageHydration);
+  notificationDiv.appendChild(receiveMessageVitality);
+  notificationDiv.appendChild(receiveMessageCleaning);
+  notificationDiv.appendChild(receiveMessageBathroom); 
+
   const showMessage = () => {
     document.body.appendChild(notificationDiv);
     notificationDiv.classList.add("notification");
-    receiveMessage.innerText = message;
-  }; 
-
-  if (health < 90) {
-    message = `O ${name} não está se sentindo bem!`;
-    showMessage(); 
-  }; 
-
-  if (happy < 90) {
-    message = `O ${name} está triste!`;
-    showMessage();
+    receiveMessageHealth.innerText = messageHealth;
+    receiveMessageHappy.innerText = messageHappy;
+    receiveMessageAlimenation.innerText = messageAlimenation;
+    receiveMessageHydration.innerText = messageHydration;
+    receiveMessageVitality.innerText = messageVitality;
+    receiveMessageCleaning.innerText = messageCleaning;
+    receiveMessageBathroom.innerText = messageBathroom;
   };
 
-  if (alimentation < 90) {
-    message = `O ${name} está com fome!`;
-    showMessage();
+  const deleteMessage = setInterval(() => {   
+    
+    receiveMessageHealth.remove();
+    receiveMessageHappy.remove();
+    receiveMessageAlimenation.remove();
+    receiveMessageHydration.remove(); 
+    receiveMessageVitality.remove(); 
+    receiveMessageCleaning.remove(); 
+    receiveMessageBathroom.remove();
+
+    messageHealth = null; 
+    messageHappy = null;
+    messageAlimenation = null;
+    messageHydration = null;
+    messageVitality = null;
+    messageCleaning = null;
+    messageBathroom = null; 
+    
+    console.log('deletei');
+  }, 10000);
+
+
+  if (health < 95) {
+    messageHealth = `O ${name} não está se sentindo bem!`;
+    showMessage();        
+  }else {
+    messageHealth = null;    
   };
 
-  if (hydration < 90) {
-    message = `O ${name} está com sede!`;
-    showMessage();
+  if (happy < 95) {
+    messageHappy = `O ${name} está triste!`;
+    showMessage();      
+  }else {
+    messageHappy = null;
+    console.log('nao foi dessa vez')    
   };
 
-  if (vitality < 90) {
-    message = `O ${name} está cansado!`;
-    showMessage();
+  if (alimentation < 95) {
+    messageAlimenation = `O ${name} está com fome!`;
+    showMessage();   
+  }else {
+    messageAlimenation = null;    
   };
 
-  if (cleaning < 90) {
-    message = `O ${name} está sujo!`;
+  if (hydration < 95) {
+    messageHydration = `O ${name} está com sede!`;
+    showMessage();   
+  }else {
+    messageHydration = null;    
+  };
+
+  if (vitality < 95) {
+    messageVitality = `O ${name} está cansado!`;
     showMessage();
+  }else {
+    messageVitality = null;    
+  };
+
+  if (cleaning < 95) {
+    messageCleaning = `O ${name} está sujo!`;
+    showMessage();    
+  }else {
+    messageCleaning = null;    
   }; 
 
-  if (bathroom < 90) {
-    message = `O ${name} está apertado!`;
-    showMessage();
+  if (bathroom < 95) {
+    messageBathroom = `O ${name} está apertado!`;
+    showMessage();    
+  }else {
+    messageBathroom = null;    
   }; 
-  console.log(message)
+  console.log('inclui');
+  deleteMessage;
+  
 }; 
+
 
 btnRun.addEventListener('click', toRun);
 btnPlay.addEventListener('click', toPlay);
@@ -1201,9 +1266,8 @@ const cleaningUpdateInterval = setInterval(cleaningStatus, 7000);
 const bathroomUpdateInterval = setInterval(bathroomStatus, 6000); 
 
 const updadeImagesInterval = setInterval(updadeImages, imageInterval);
-const updadeColorBarsInterval = setInterval(updateAllBars, 3000);
+const updateAllBarsInterval = setInterval(updateAllBars, 3000);
 
 const disableAndEnabledActionButtonsInterval = setInterval(disableAndEnabledActionButtons, 3000);
 const limiteUpdateStatusInterval = setInterval(limiteStatus, 3000);
 const yourCatDiedUpdateInterval = setInterval(yourCatDied, 3000); 
-
