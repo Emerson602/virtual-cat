@@ -3,7 +3,7 @@ const containerStatus = document.querySelector('#container-status');
 const containerActions = document.querySelector('#container-actions');
 const notificationDiv = document.createElement("div");
 const imgCat = document.getElementById('img-cat'); 
-let imageUrl = './pics/main.gif'; 
+let imageUrl = './animations/main.gif'; 
 
 let name = 'Coquinho';
 let age = 0;
@@ -80,14 +80,41 @@ function ageUpdate() {
  
   months += 1;
 
-  if (months > 12) {    
-    months = 1;
+  if (months > 11) {    
+    months = 0;
     age += 1;
   } else if (age === lifetime) {    
     clearInterval(ageUpdateInterval);
   };
 
 }; 
+
+
+function growth() {
+
+  let currentWidth = parseFloat(imgCat.style.width) || 100;
+
+  let incrementedValue = 0;
+
+  if (window.matchMedia("(max-width: 600px)").matches && months <= 6) {
+
+      currentWidth = parseFloat(imgCat.style.width) || 30;
+      incrementedValue = 0.12;
+      imgCat.style.width = (currentWidth + incrementedValue) + 'vw';
+
+  } else if (months <= 6) {
+
+    currentWidth = parseFloat(imgCat.style.width) || 100;
+    incrementedValue = 1;
+    imgCat.style.width = (currentWidth + incrementedValue) + 'px'; 
+    
+  } else {
+
+    clearInterval(growthInterval);
+
+  }; 
+
+};
 
 function healthStatus() { 
 
@@ -294,17 +321,17 @@ function updadeImages() {
   imgCat.src = imageUrl;
   
   if (health == 0 || happy == 0 || alimentation == 0 || hydration == 0 || vitality == 0 || cleaning == 0 || bathroom == 0) {
-    imageUrl = './pics/sick.gif';
+    imageUrl = './animations/sick.gif';
   } else if (health <= 5 || happy <= 5 || alimentation <= 5 || hydration <= 5 || vitality <= 5 || cleaning <= 5 || bathroom <= 5) {
-    imageUrl = './pics/crying.gif';
+    imageUrl = './animations/crying.gif';
   } else if (health <= 15 || happy <= 15 || alimentation <= 15 || hydration <= 15 || vitality <= 15 || cleaning <= 15 || bathroom <= 15) {
-    imageUrl = './pics/kicking.gif';
+    imageUrl = './animations/kicking.gif';
   } else if (health <= 30 || happy <= 30 || alimentation <= 30 || hydration <= 30 || vitality <= 30 || cleaning <= 30 || bathroom <= 30) {
-    imageUrl = './pics/thoughtful.gif';
+    imageUrl = './animations/thoughtful.gif';
   } else if (health <= 70 || happy <= 70 || alimentation <= 70 || hydration <= 70 || vitality <= 70 || cleaning <= 70 || bathroom <= 70) {
-    imageUrl = './pics/angry.gif';
+    imageUrl = './animations/angry.gif';
   } else {
-    imageUrl = './pics/quiet.gif';
+    imageUrl = './animations/quiet.gif';
   }
 
 }; 
@@ -634,7 +661,7 @@ function toRun() {
     containerStatus.setAttribute('class', 'container-status-hidden');
     containerActions.setAttribute('class', 'container-actions-hidden');
 
-    imageUrl = './pics/running.gif';
+    imageUrl = './animations/running.gif';
     run.setAttribute('id', 'not-clickable');      
     run.disabled = true;     
     delayUpdateImages;
@@ -676,7 +703,7 @@ function toPlay() {
     containerStatus.setAttribute('class', 'container-status-hidden');
     containerActions.setAttribute('class', 'container-actions-hidden');
 
-    imageUrl = './pics/joking.gif';  
+    imageUrl = './animations/joking.gif';  
     play.setAttribute('id', 'not-clickable');     
     play.disabled = true;
     delayUpdateImages;
@@ -716,7 +743,7 @@ function toSleep() {
   containerStatus.setAttribute('class', 'container-status-hidden');
   containerActions.setAttribute('class', 'container-actions-hidden');
 
-  imageUrl = './pics/sleeping.gif';  
+  imageUrl = './animations/sleeping.gif';  
   sleep.setAttribute('id', 'not-clickable');     
   sleep.disabled = true;
   delayUpdateImages;
@@ -755,7 +782,7 @@ function toToilet() {
   containerStatus.setAttribute('class', 'container-status-hidden');
   containerActions.setAttribute('class', 'container-actions-hidden');
 
-  imageUrl = './pics/bathroom.gif';  
+  imageUrl = './animations/bathroom.gif';  
   toilet.setAttribute('id', 'not-clickable');     
   toilet.disabled = true;
   delayUpdateImages;
@@ -791,7 +818,7 @@ function toKindness() {
   containerStatus.setAttribute('class', 'container-status-hidden');
   containerActions.setAttribute('class', 'container-actions-hidden');
 
-  imageUrl = './pics/kindness.gif';  
+  imageUrl = './animations/kindness.gif';  
   kindness.setAttribute('id', 'not-clickable');     
   kindness.disabled = true;
   delayUpdateImages;
@@ -821,7 +848,7 @@ function toLittleSnack() {
     containerStatus.setAttribute('class', 'container-status-hidden');
     containerActions.setAttribute('class', 'container-actions-hidden');
 
-    imageUrl = './pics/little-snack.gif';  
+    imageUrl = './animations/little-snack.gif';  
     littleSnack.setAttribute('id', 'not-clickable');     
     littleSnack.disabled = true;
     delayUpdateImages;
@@ -862,7 +889,7 @@ function toEat() {
     containerStatus.setAttribute('class', 'container-status-hidden');
     containerActions.setAttribute('class', 'container-actions-hidden');
 
-    imageUrl = './pics/eating.gif';  
+    imageUrl = './animations/eating.gif';  
     eat.setAttribute('id', 'not-clickable');     
     eat.disabled = true;
     delayUpdateImages;
@@ -909,7 +936,7 @@ function toDrink() {
     containerStatus.setAttribute('class', 'container-status-hidden');
     containerActions.setAttribute('class', 'container-actions-hidden');
 
-    imageUrl = './pics/drinking.gif';  
+    imageUrl = './animations/drinking.gif';  
     drink.setAttribute('id', 'not-clickable');     
     drink.disabled = true;
     delayUpdateImages;
@@ -948,7 +975,7 @@ function toRelax() {
     containerStatus.setAttribute('class', 'container-status-hidden');
     containerActions.setAttribute('class', 'container-actions-hidden');
 
-    imageUrl = './pics/relax.gif';  
+    imageUrl = './animations/relax.gif';  
     relax.setAttribute('id', 'not-clickable');     
     relax.disabled = true;
     delayUpdateImages;
@@ -987,7 +1014,7 @@ function toBath() {
     containerStatus.setAttribute('class', 'container-status-hidden');
     containerActions.setAttribute('class', 'container-actions-hidden');
 
-    imageUrl = './pics/bathing.gif';  
+    imageUrl = './animations/bathing.gif';  
     bath.setAttribute('id', 'not-clickable');     
     bath.disabled = true;
     delayUpdateImages;
@@ -1033,7 +1060,7 @@ function toBrushTeeth() {
     containerStatus.setAttribute('class', 'container-status-hidden');
     containerActions.setAttribute('class', 'container-actions-hidden');
 
-    imageUrl = './pics/brush-teeth.gif';  
+    imageUrl = './animations/brush-teeth.gif';  
     brushTeeth.setAttribute('id', 'not-clickable');     
     brushTeeth.disabled = true;
     delayUpdateImages;
@@ -1043,7 +1070,7 @@ function toBrushTeeth() {
     happy += randomNumberActions; 
     health += randomNumberActions - 5;     
 
-    if (cleaning >= 95) {
+    if (cleaning >= 95) {   
       
       cleaning = 100;  
       cleaning += 0;       
@@ -1078,7 +1105,7 @@ function toFutebol() {
     containerStatus.setAttribute('class', 'container-status-hidden');
     containerActions.setAttribute('class', 'container-actions-hidden');
 
-    imageUrl = './pics/fut.gif';  
+    imageUrl = './animations/fut.gif';  
     futebol.setAttribute('id', 'not-clickable');     
     futebol.disabled = true;
     delayUpdateImages;
@@ -1135,13 +1162,21 @@ function notifications() {
  
   notificationDiv.setAttribute("id", "notification");
 
-  const receiveMessageHealth = document.createElement("span");
-  const receiveMessageHappy = document.createElement("span");
+  const receiveMessageHealth = document.createElement("span");  
+  const receiveMessageHappy = document.createElement("span");  
   const receiveMessageAlimenation = document.createElement("span");
-  const receiveMessageHydration = document.createElement("span");
-  const receiveMessageVitality = document.createElement("span");
-  const receiveMessageCleaning = document.createElement("span");
-  const receiveMessageBathroom = document.createElement("span");
+  const receiveMessageHydration = document.createElement("span");    
+  const receiveMessageVitality = document.createElement("span");  
+  const receiveMessageCleaning = document.createElement("span");  
+  const receiveMessageBathroom = document.createElement("span"); 
+
+  receiveMessageHealth.classList.add("notification-health");
+  receiveMessageHappy.classList.add("notification-happy");
+  receiveMessageAlimenation.classList.add("notification-alimentation");
+  receiveMessageHydration.classList.add("notification-hydration");  
+  receiveMessageVitality.classList.add("notification-vitality");
+  receiveMessageCleaning.classList.add("notification-cleaning");
+  receiveMessageBathroom.classList.add("notification-bathroom");
 
   notificationDiv.appendChild(receiveMessageHealth);
   notificationDiv.appendChild(receiveMessageHappy);
@@ -1153,7 +1188,7 @@ function notifications() {
 
   const showMessage = () => {
     document.body.appendChild(notificationDiv);
-    notificationDiv.classList.add("notification");
+    notificationDiv.classList.add("notification-container");
     receiveMessageHealth.innerText = messageHealth;
     receiveMessageHappy.innerText = messageHappy;
     receiveMessageAlimenation.innerText = messageAlimenation;
@@ -1163,7 +1198,7 @@ function notifications() {
     receiveMessageBathroom.innerText = messageBathroom;
   };
 
-  const deleteMessage = setInterval(() => {   
+  const deleteMessage = setTimeout(() => {   
     
     receiveMessageHealth.remove();
     receiveMessageHappy.remove();
@@ -1179,66 +1214,113 @@ function notifications() {
     messageHydration = null;
     messageVitality = null;
     messageCleaning = null;
-    messageBathroom = null; 
+    messageBathroom = null;     
     
-    console.log('deletei');
-  }, 10000);
+  }, 60000);
 
-
-  if (health < 95) {
-    messageHealth = `O ${name} não está se sentindo bem!`;
-    showMessage();        
-  }else {
+  if (health <= 0) {
+    messageHealth = `O ${name} morreu!`;
+    showMessage(); 
+    return       
+  } else { 
+    deleteMessage    
     messageHealth = null;    
   };
 
+  if (health < 95) {
+
+    messageHealth = `O ${name} não está se sentindo bem!`;
+    showMessage();
+
+  } else { 
+
+    receiveMessageHealth.remove();
+    messageHealth = null;   
+
+  };
+
   if (happy < 95) {
+
     messageHappy = `O ${name} está triste!`;
-    showMessage();      
-  }else {
+    showMessage();  
+
+  } else {
+
+    receiveMessageHappy.remove();
     messageHappy = null;
-    console.log('nao foi dessa vez')    
+
   };
 
   if (alimentation < 95) {
+
     messageAlimenation = `O ${name} está com fome!`;
-    showMessage();   
-  }else {
-    messageAlimenation = null;    
+    showMessage(); 
+
+  } else {
+
+    receiveMessageAlimenation.remove();
+    messageAlimenation = null;  
+
   };
 
   if (hydration < 95) {
+
     messageHydration = `O ${name} está com sede!`;
     showMessage();   
-  }else {
-    messageHydration = null;    
+
+  } else {
+
+    receiveMessageHydration.remove();
+    messageHydration = null;   
+
   };
 
   if (vitality < 95) {
+
     messageVitality = `O ${name} está cansado!`;
     showMessage();
-  }else {
+
+  } else {
+
+    receiveMessageVitality.remove();
     messageVitality = null;    
+
   };
 
   if (cleaning < 95) {
+
     messageCleaning = `O ${name} está sujo!`;
-    showMessage();    
-  }else {
-    messageCleaning = null;    
+    showMessage();  
+
+  } else {
+
+    receiveMessageCleaning.remove();
+    messageCleaning = null; 
+
   }; 
 
   if (bathroom < 95) {
+
     messageBathroom = `O ${name} está apertado!`;
-    showMessage();    
-  }else {
-    messageBathroom = null;    
+    showMessage();  
+
+  } else {
+
+    receiveMessageBathroom.remove();
+    messageCleaning = null;
+
+  };
+
+  if (health >= 95 && happy >= 95 && alimentation >= 95 && hydration >= 95 
+    && vitality >= 95 && cleaning >= 95 && bathroom >= 95){
+
+    notificationDiv.remove(); 
+
   }; 
-  console.log('inclui');
+  
   deleteMessage;
   
 }; 
-
 
 btnRun.addEventListener('click', toRun);
 btnPlay.addEventListener('click', toPlay);
@@ -1255,7 +1337,8 @@ btnFutebol.addEventListener('click', toFutebol);
 
 const ageUpdateInterval = setInterval(ageUpdate, oneDay);
 const indexStatusUpdateInterval = setInterval(indexStatus, 3000);
-const notificationsInterval = setInterval(notifications, 30000); 
+const notificationsInterval = setInterval(notifications, 60000); 
+const growthInterval = setInterval(growth, 192000);
 
 const healthUpdateInterval = setInterval(healthStatus, 12000);
 const happyUpdateInterval = setInterval(happyStatus, 11000);

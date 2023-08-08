@@ -26,7 +26,8 @@
 
 
 img {
-  width: 563px;
+
+  width: 100px;
   height: auto;  
 }
 
@@ -34,7 +35,7 @@ img {
 
   img{
 
-    width: 85vw;
+    width: 30vw;
     height: auto;
 
   }
@@ -66,7 +67,7 @@ img {
 
   width: 100%;
   text-align: center;
-  color: #fff;
+  color: #fff; 
 }
 
 @media(max-width: 540px){
@@ -88,6 +89,7 @@ img {
   justify-content: center;
   align-items: center;
   color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
 }
 
 .controls{
@@ -109,6 +111,7 @@ button{
   color: #fff;
   background-color: #8B008B;
   margin: 8px 12px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
 }
 
 button:hover{
@@ -163,4 +166,119 @@ button:hover{
   }
 
 }
+
+@media(max-width: 440px){
+
+  .container-actions{
+
+    grid-template-columns: auto auto;
+    
+  }
+
+}
+
+.notification-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  flex-direction: column;
+  position: absolute;
+  top: 10%;
+  left: 0px; 
+  height: auto;
+  width: auto;    
+}
+
+.notification-container span { 
+  
+  border-radius: 0 4px 4px 0;
+  background-color: #F4F5FA;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 10%;
+  left: -140px;
+  width: 140px;
+  height: auto;
+  text-align: center;
+  padding: 8px 12px;
+  margin: 3px 0;  
+}
+
+.notification-health{
+
+
+  animation: notification 8s linear;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+  opacity: 0;  
+
+}
+
+.notification-happy{  
+  
+  animation: notification 8s linear;
+  animation-delay: 6s;
+  animation-fill-mode: forwards;
+  opacity: 0;    
+
+}
+
+.notification-alimentation{   
+  
+  animation: notification 8s linear;
+  animation-delay: 12s;
+  animation-fill-mode: forwards;
+  opacity: 0;  
+
+}
+
+.notification-hydration{  
+ 
+  animation: notification 8s linear;
+  animation-delay: 18s;
+  animation-fill-mode: forwards;
+  opacity: 0;  
+
+}
+
+.notification-vitality{  
+
+  animation: notification 8s linear;
+  animation-delay: 24s;
+  animation-fill-mode: forwards;
+  opacity: 0;  
+ 
+}
+
+.notification-cleaning{  
+ 
+  animation: notification 8s linear;
+  animation-delay: 30s;
+  animation-fill-mode: forwards; 
+  opacity: 0;  
+
+}
+
+.notification-bathroom{  
+ 
+  animation: notification 8s linear;
+  animation-delay: 36s;
+  animation-fill-mode: forwards; 
+  opacity: 0;   
+
+}
+
+@keyframes notification {
+  0%   {position: absolute; left: -140px; opacity: 0;}
+  10%  {position: absolute; left: 0px; opacity: 1;}
+  90%  {position: absolute; left: 0px; opacity: 1;}
+  100% {position: absolute; left: -140px; opacity: 0;}
+}
+
+
+
+
+
+
+
     
