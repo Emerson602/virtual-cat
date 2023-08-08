@@ -3,6 +3,7 @@ const containerStatus = document.querySelector('#container-status');
 const containerActions = document.querySelector('#container-actions');
 const notificationDiv = document.createElement("div");
 const imgCat = document.getElementById('img-cat'); 
+
 let imageUrl = './animations/main.gif'; 
 
 let name = 'Coquinho';
@@ -40,6 +41,14 @@ const bathroomText = document.querySelector('.bathroomText');
 
 const btnStatus = document.querySelector('.btn-status');
 const btnActions = document.querySelector('.btn-actions');
+
+const myAudio = document.querySelector("#audio");
+const btnActivateAudio = document.querySelector("#btn-activate-audio");
+const btnTurnUpVol = document.querySelector("#btn-up-vol");
+const btnTurnDownVol = document.querySelector("#btn-down-vol");
+const iconBtnTurnDownVol = document.querySelector("#icon-btn-activate-audio");
+
+
 
 let imageInterval = 30000; 
 
@@ -1320,7 +1329,37 @@ function notifications() {
   
   deleteMessage;
   
-}; 
+};  
+
+function activateAudio() {
+
+  if (myAudio.paused) {
+    myAudio.play();    
+    iconBtnTurnDownVol.setAttribute('src', './imgs/volume-xmark-solid.svg')
+  } else {
+    myAudio.pause();    
+    iconBtnTurnDownVol.setAttribute('src', './imgs/volume-high-solid.svg')
+  }
+} 
+
+function turnUpVol() {
+
+  if (myAudio.volume < 1) {
+    myAudio.volume = Math.min(myAudio.volume + 0.1, 1); 
+  }
+}
+
+function turnDownVol() {
+
+  if (myAudio.volume > 0) {
+    myAudio.volume = Math.max(myAudio.volume - 0.1, 0); 
+  }
+}
+
+
+btnActivateAudio.addEventListener('click', activateAudio);
+btnTurnUpVol.addEventListener('click', turnUpVol);
+btnTurnDownVol.addEventListener('click', turnDownVol);
 
 btnRun.addEventListener('click', toRun);
 btnPlay.addEventListener('click', toPlay);

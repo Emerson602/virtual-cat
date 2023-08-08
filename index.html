@@ -4,59 +4,81 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cat virtual</title>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./style.css">  
 </head>
-<body onload="indexStatus(); updadeImages();"> 
+<body onload="indexStatus(); updadeImages(); updateAllBars(); disableAndEnabledActionButtons();"> 
 
 <div id="content">
 
-  <div class="main">
+    <audio id="audio" controls autoplay>
+      <source src="./sounds/sound-1.mp3" type="audio/mpeg">
+    </audio> 
 
-    <div class="controls"> 
-      <span class="nameBar"></span>
-      <span class="ageBar"></span>
-      <button class="btn-status">Status</button>
-      <button class="btn-actions">Ações</button>
-    </div> 
+    <header>
 
-    <img id="img-cat" src="">
+      <div>
+        <span class="nameBar"></span>
+        <span class="ageBar"></span>
+      </div>
 
-  </div>  
+      <div class="controls">
+        <button class="btn-status">Status</button>
+        <button class="btn-actions">Ações</button>    
+      </div> 
 
+      <div class="sound-control-container">
 
-  <div class='container-status-hidden' id="container-status">   
+        <button id="btn-activate-audio" class="button"><img id="icon-btn-activate-audio" src="./imgs/volume-high-solid.svg"></button> 
+
+        <button id="btn-down-vol">-</button> 
+        <button id="btn-up-vol">+</button>   
+            
+      </div> 
+
+    </header>
+
+    <div class="main">
+
+      <img id="img-cat" src="">
+
+        <div class='container-status-hidden' id="container-status">   
+          
+          <span  class="healthText"></span>
+          <div class="healthBar"></div>
+
+          <span class="happyText"></span>
+          <div class="happyBar"></div>
+
+          <span class="alimentationText"></span>
+          <div class="alimentationBar"></div>
+
+          <span class="hydrationText"></span>
+          <div class="hydrationBar"></div>
+
+          <span class="vitalityText"></span>
+          <div class="vitalityBar"></div>
+
+          <span class="cleaningText"></span>
+          <div class="cleaningBar"></div>
+          
+          <span class="bathroomText"></span>
+          <div class="bathroomBar"></div>     
+          
+        </div>
+
+        <div class='container-actions-hidden' id="container-actions"></div>   
+               
+
+     </div>
     
-    <span  class="healthText"></span>
-    <div class="healthBar"></div>
+</div>  
 
-    <span class="happyText"></span>
-    <div class="happyBar"></div>
 
-    <span class="alimentationText"></span>
-    <div class="alimentationBar"></div>
 
-    <span class="hydrationText"></span>
-    <div class="hydrationBar"></div>
-
-    <span class="vitalityText"></span>
-    <div class="vitalityBar"></div>
-
-    <span class="cleaningText"></span>
-    <div class="cleaningBar"></div>
-    
-    <span class="bathroomText"></span>
-    <div class="bathroomBar"></div>     
-    
-   </div>
-
-  </div>
-
-  <div class='container-actions-hidden' id="container-actions">
-    
-  </div>
 
 
 
 <script type="text/javascript" src="./js/app.js" defer=""></script>
 </body>
 </html>
+
