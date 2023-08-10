@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cat virtual</title>
-  <link rel="stylesheet" href="./style.css">  
+  <link rel="stylesheet" href="./css/style.css">  
 </head>
 <body onload="indexStatus(); updadeImages(); updateAllBars(); disableAndEnabledActionButtons();"> 
 
@@ -21,21 +21,23 @@
         <span class="ageBar"></span>
       </div>
 
-      <div class="controls">
-        <button class="btn-status">Status</button>
-        <button class="btn-actions">Ações</button>    
-      </div> 
-
-      <div class="sound-control-container">
-
-        <button id="btn-activate-audio" class="button"><img id="icon-btn-activate-audio" src="./imgs/volume-high-solid.svg"></button> 
-
-        <button id="btn-down-vol">-</button> 
-        <button id="btn-up-vol">+</button>   
-            
-      </div> 
-
     </header>
+
+    <div class="controls">
+
+      <button class="btn-status"><img id="controls-buttons-icons" src="./imgs/chart-bar-solid.svg"></button>
+      <button class="btn-actions"><img id="controls-buttons-icons" src="./imgs/gamepad-solid.svg"></button>  
+        
+    </div> 
+
+    <div class="sound-control-container">
+
+      <button id="btn-activate-audio" class="button"><img id="icon-btn-activate-audio" src="./imgs/volume-xmark-solid.svg"></button> 
+
+      <button id="btn-down-vol">-</button> 
+      <button id="btn-up-vol">+</button>   
+          
+    </div> 
 
     <div class="main">
 
@@ -81,4 +83,3 @@
 <script type="text/javascript" src="./js/app.js" defer=""></script>
 </body>
 </html>
-

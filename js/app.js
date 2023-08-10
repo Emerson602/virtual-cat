@@ -1335,10 +1335,10 @@ function activateAudio() {
 
   if (myAudio.paused) {
     myAudio.play();    
-    iconBtnTurnDownVol.setAttribute('src', './imgs/volume-xmark-solid.svg')
+    iconBtnTurnDownVol.setAttribute('src', './imgs/volume-high-solid.svg')
   } else {
     myAudio.pause();    
-    iconBtnTurnDownVol.setAttribute('src', './imgs/volume-high-solid.svg')
+    iconBtnTurnDownVol.setAttribute('src', './imgs/volume-xmark-solid.svg')
   }
 } 
 
