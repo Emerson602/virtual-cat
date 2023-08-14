@@ -318,7 +318,7 @@ img {
   100% {position: absolute; left: -140px; opacity: 0;}  
 }
 
-#audio{
+#audio, #audio-click{
 
   position: absolute;
   top: 0;
@@ -336,7 +336,7 @@ img {
   height: 100vh;
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
 
 }
 

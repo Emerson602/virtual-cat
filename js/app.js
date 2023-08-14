@@ -43,6 +43,8 @@ const btnStatus = document.querySelector('.btn-status');
 const btnActions = document.querySelector('.btn-actions');
 
 const myAudio = document.querySelector("#audio");
+const myAudioClick = document.querySelector("#audio-click");
+const buttons = document.querySelectorAll('button');
 const btnActivateAudio = document.querySelector("#btn-activate-audio");
 const btnTurnUpVol = document.querySelector("#btn-up-vol");
 const btnTurnDownVol = document.querySelector("#btn-down-vol");
@@ -543,7 +545,7 @@ function disableAndEnabledActionButtons() {
       
     };
 
-    if (happy > 100) {
+    if (happy >= 100) {
 
       kindness.setAttribute('id', 'not-clickable');  
       kindness.disabled = true;
@@ -674,7 +676,8 @@ function toRun() {
     run.setAttribute('id', 'not-clickable');      
     run.disabled = true;     
     delayUpdateImages;
-    delayRunButton; 
+    delayRunButton;
+    activateAudioClick(); 
 
     vitality -= randomNumberActions;
     cleaning -= randomNumberActions;
@@ -717,6 +720,7 @@ function toPlay() {
     play.disabled = true;
     delayUpdateImages;
     delayPlayButton;
+    activateAudioClick();
 
     vitality -= randomNumberActions;
     cleaning -= randomNumberActions;
@@ -757,6 +761,7 @@ function toSleep() {
   sleep.disabled = true;
   delayUpdateImages;
   delaySleepButton;
+  activateAudioClick();
 
   vitality += randomNumberActions;
   health += randomNumberActions - 5; 
@@ -796,6 +801,7 @@ function toToilet() {
   toilet.disabled = true;
   delayUpdateImages;
   delayToiletButton;
+  activateAudioClick();
 
   bathroom += randomNumberActions;
   health += randomNumberActions - 5;  
@@ -832,6 +838,7 @@ function toKindness() {
   kindness.disabled = true;
   delayUpdateImages;
   delayKindnessButton;
+  activateAudioClick();
 
   happy += randomNumberActions;
   health += randomNumberActions - 5;   
@@ -861,7 +868,8 @@ function toLittleSnack() {
     littleSnack.setAttribute('id', 'not-clickable');     
     littleSnack.disabled = true;
     delayUpdateImages;
-    delayLittleSnackButton;    
+    delayLittleSnackButton;  
+    activateAudioClick();  
     
     happy += randomNumberActions;
     alimentation += randomNumberActions;
@@ -902,7 +910,8 @@ function toEat() {
     eat.setAttribute('id', 'not-clickable');     
     eat.disabled = true;
     delayUpdateImages;
-    delayEatButton;    
+    delayEatButton; 
+    activateAudioClick();   
     
     bathroom -= randomNumberActions; 
     hydration -= randomNumberActions;   
@@ -949,7 +958,8 @@ function toDrink() {
     drink.setAttribute('id', 'not-clickable');     
     drink.disabled = true;
     delayUpdateImages;
-    delayDrinkButton;    
+    delayDrinkButton;  
+    activateAudioClick();  
     
     bathroom -= randomNumberActions; 
     hydration += randomNumberActions;  
@@ -988,7 +998,8 @@ function toRelax() {
     relax.setAttribute('id', 'not-clickable');     
     relax.disabled = true;
     delayUpdateImages;
-    delayRelaxButton;    
+    delayRelaxButton; 
+    activateAudioClick();   
     
     alimentation -= randomNumberActions;
     bathroom -= randomNumberActions; 
@@ -1028,6 +1039,7 @@ function toBath() {
     bath.disabled = true;
     delayUpdateImages;
     delayBathButton;
+    activateAudioClick();
 
     cleaning += randomNumberActions;  
     happy += randomNumberActions; 
@@ -1074,6 +1086,7 @@ function toBrushTeeth() {
     brushTeeth.disabled = true;
     delayUpdateImages;
     delayBrushTeethButton;
+    activateAudioClick();
 
     cleaning += randomNumberActions;  
     happy += randomNumberActions; 
@@ -1119,6 +1132,7 @@ function toFutebol() {
     futebol.disabled = true;
     delayUpdateImages;
     delayFutebolButton;
+    activateAudioClick();
 
     vitality -= randomNumberActions;
     cleaning -= randomNumberActions;
@@ -1356,6 +1370,22 @@ function turnDownVol() {
   }
 }
 
+
+
+function activateAudioClick() {
+  
+  const myAudioClick = new Audio('./sounds/sound-click.mp3'); 
+
+  if (myAudioClick.paused) {
+    myAudioClick.play();    
+  } else {
+    myAudioClick.pause();        
+  }
+}
+
+buttons.forEach(button => {
+  button.addEventListener('click', activateAudioClick);
+}); 
 
 btnActivateAudio.addEventListener('click', activateAudio);
 btnTurnUpVol.addEventListener('click', turnUpVol);
