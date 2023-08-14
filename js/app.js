@@ -678,7 +678,7 @@ function toRun() {
     run.disabled = true;     
     delayUpdateImages;
     delayRunButton;
-    activateAudioClick(); 
+    clickSoundEffect(); 
 
     vitality -= randomNumberActions;
     cleaning -= randomNumberActions;
@@ -721,7 +721,7 @@ function toPlay() {
     play.disabled = true;
     delayUpdateImages;
     delayPlayButton;
-    activateAudioClick();
+    clickSoundEffect();
 
     vitality -= randomNumberActions;
     cleaning -= randomNumberActions;
@@ -762,7 +762,7 @@ function toSleep() {
   sleep.disabled = true;
   delayUpdateImages;
   delaySleepButton;
-  activateAudioClick();
+  clickSoundEffect();
 
   vitality += randomNumberActions;
   health += randomNumberActions - 5; 
@@ -802,7 +802,7 @@ function toToilet() {
   toilet.disabled = true;
   delayUpdateImages;
   delayToiletButton;
-  activateAudioClick();
+  clickSoundEffect();
 
   bathroom += randomNumberActions;
   health += randomNumberActions - 5;  
@@ -839,7 +839,7 @@ function toKindness() {
   kindness.disabled = true;
   delayUpdateImages;
   delayKindnessButton;
-  activateAudioClick();
+  clickSoundEffect();
 
   happy += randomNumberActions;
   health += randomNumberActions - 5;   
@@ -870,7 +870,7 @@ function toLittleSnack() {
     littleSnack.disabled = true;
     delayUpdateImages;
     delayLittleSnackButton;  
-    activateAudioClick();  
+    clickSoundEffect();  
     
     happy += randomNumberActions;
     alimentation += randomNumberActions;
@@ -912,7 +912,7 @@ function toEat() {
     eat.disabled = true;
     delayUpdateImages;
     delayEatButton; 
-    activateAudioClick();   
+    clickSoundEffect();   
     
     bathroom -= randomNumberActions; 
     hydration -= randomNumberActions;   
@@ -960,7 +960,7 @@ function toDrink() {
     drink.disabled = true;
     delayUpdateImages;
     delayDrinkButton;  
-    activateAudioClick();  
+    clickSoundEffect();  
     
     bathroom -= randomNumberActions; 
     hydration += randomNumberActions;  
@@ -1000,7 +1000,7 @@ function toRelax() {
     relax.disabled = true;
     delayUpdateImages;
     delayRelaxButton; 
-    activateAudioClick();   
+    clickSoundEffect();   
     
     alimentation -= randomNumberActions;
     bathroom -= randomNumberActions; 
@@ -1040,7 +1040,7 @@ function toBath() {
     bath.disabled = true;
     delayUpdateImages;
     delayBathButton;
-    activateAudioClick();
+    clickSoundEffect();
 
     cleaning += randomNumberActions;  
     happy += randomNumberActions; 
@@ -1087,7 +1087,7 @@ function toBrushTeeth() {
     brushTeeth.disabled = true;
     delayUpdateImages;
     delayBrushTeethButton;
-    activateAudioClick();
+    clickSoundEffect();
 
     cleaning += randomNumberActions;  
     happy += randomNumberActions; 
@@ -1133,7 +1133,7 @@ function toFutebol() {
     futebol.disabled = true;
     delayUpdateImages;
     delayFutebolButton;
-    activateAudioClick();
+    clickSoundEffect();
 
     vitality -= randomNumberActions;
     cleaning -= randomNumberActions;
