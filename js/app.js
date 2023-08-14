@@ -1360,14 +1360,16 @@ function activateAudio() {
 function turnUpVol() {
 
   if (myAudio.volume < 1) {
-    myAudio.volume = Math.min(myAudio.volume + 0.1, 1);     
+    myAudio.volume = Math.min(myAudio.volume + 0.1, 1);
+    myAudioClick.volume = Math.min(myAudio.volume + 0.1, 1);     
   }
 }
 
 function turnDownVol() {
 
   if (myAudio.volume > 0) {
-    myAudio.volume = Math.max(myAudio.volume - 0.1, 0);     
+    myAudio.volume = Math.max(myAudio.volume - 0.1, 0); 
+    myAudioClick.volume = Math.max(myAudio.volume - 0.1, 0);
   }
 } 
 
