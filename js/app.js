@@ -43,7 +43,6 @@ const btnStatus = document.querySelector('.btn-status');
 const btnActions = document.querySelector('.btn-actions');
 
 const myAudio = document.querySelector("#audio");
-const myAudioClick = document.querySelector("#audio-click");
 const buttons = document.querySelectorAll('button');
 const btnActivateAudio = document.querySelector("#btn-activate-audio");
 const btnTurnUpVol = document.querySelector("#btn-up-vol");
