@@ -43,6 +43,8 @@ const btnStatus = document.querySelector('.btn-status');
 const btnActions = document.querySelector('.btn-actions');
 
 const myAudio = document.querySelector("#audio");
+const myAudioClick = document.querySelector("#audio-click");
+
 const buttons = document.querySelectorAll('button');
 const btnActivateAudio = document.querySelector("#btn-activate-audio");
 const btnTurnUpVol = document.querySelector("#btn-up-vol");
@@ -1358,22 +1360,18 @@ function activateAudio() {
 function turnUpVol() {
 
   if (myAudio.volume < 1) {
-    myAudio.volume = Math.min(myAudio.volume + 0.1, 1); 
+    myAudio.volume = Math.min(myAudio.volume + 0.1, 1);     
   }
 }
 
 function turnDownVol() {
 
   if (myAudio.volume > 0) {
-    myAudio.volume = Math.max(myAudio.volume - 0.1, 0); 
+    myAudio.volume = Math.max(myAudio.volume - 0.1, 0);     
   }
-}
+} 
 
-
-
-function activateAudioClick() {
-  
-  const myAudioClick = new Audio('./sounds/sound-click.mp3'); 
+function clickSoundEffect() {   
 
   if (myAudioClick.paused) {
     myAudioClick.play();    
@@ -1382,11 +1380,13 @@ function activateAudioClick() {
   }
 }
 
-buttons.forEach(button => {
-  button.addEventListener('click', activateAudioClick);
-}); 
+ 
 
 btnActivateAudio.addEventListener('click', activateAudio);
+buttons.forEach(button => {
+  button.addEventListener('click', clickSoundEffect);
+});
+
 btnTurnUpVol.addEventListener('click', turnUpVol);
 btnTurnDownVol.addEventListener('click', turnDownVol);
 
